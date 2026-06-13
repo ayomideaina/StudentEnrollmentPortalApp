@@ -175,6 +175,22 @@ Additional fields are generated:
 
 ---
 
+## Component-based Architecture
+
+- Component-based architecture means the app is built from reusable UI pieces. Each component handles its own display and behavior, so the app is easier to read and maintain.
+- The Virtual DOM is React's copy of the UI in memory. React compares it to the real DOM and updates only what changed, which makes rendering faster.
+- This app uses the Random User API to load the initial student roster. It shows a loading message while fetching and an error message if the fetch fails, so the page does not crash.
+
+---
+
+## Controlled VS. Uncontrolled Forms
+
+- Controlled forms keep input values in React state for instant validation and live preview updates.
+- Uncontrolled forms keep values in the browser DOM and read them only on submit, which is useful for fields you don't need to track constantly.
+- Controlled inputs are useful for live UI feedback or validation while uncontrolled inputs are needed for simpler form handling for occasional reads.
+
+---
+
 ## Key JavaScript Features Used
 
 * Arrow Functions
