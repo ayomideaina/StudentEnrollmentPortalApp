@@ -75,45 +75,36 @@ const EnrollForm = ({ tracks, onEnroll }) => {
     <form className="enroll-form" onSubmit={handleSubmit}>
       <h2>Enroll New Student</h2>
 
-      <div>
-        <label>First Name</label>
+      <div className="form-row form-row--fields">
+        <div>
+          <label>First Name</label>
+          <input type="text" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
+          {errors.firstName && <p className="error">{errors.firstName}</p>}
+        </div>
 
-        <input type="text" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
+        <div>
+          <label>Last Name</label>
+          <input type="text" value={lastName} onChange={(e) => setLastName(e.target.value)} />
+          {errors.lastName && <p className="error">{errors.lastName}</p>}
+        </div>
 
-        {errors.firstName && <p className="error">{errors.firstName}</p>}
+        <div>
+          <label>Track</label>
+          <select value={track} onChange={(e) => setTrack(e.target.value)}>
+            {tracks.map((trackOption) => (
+              <option key={trackOption} value={trackOption}>
+                {trackOption}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        <div>
+          <label>Score</label>
+          <input type="number" value={score} onChange={(e) => setScore(e.target.value)} />
+          {errors.score && <p className="error">{errors.score}</p>}
+        </div>
       </div>
-
-      <div>
-        <label>Last Name</label>
-
-        <input type="text" value={lastName} onChange={(e) => setLastName(e.target.value)} />
-
-        {errors.lastName && <p className="error">{errors.lastName}</p>}
-      </div>
-
-      <div>
-        <label>Track</label>
-
-        <select value={track} onChange={(e) => setTrack(e.target.value)}>
-          {tracks.map((trackOption) => (
-            <option key={trackOption} value={trackOption}>
-              {trackOption}
-            </option>
-          ))}
-        </select>
-      </div>
-
-      <div>
-        <label>Score</label>
-
-        <input type="number" value={score} onChange={(e) => setScore(e.target.value)} />
-
-        {errors.score && <p className="error">{errors.score}</p>}
-      </div>
-
-      <p className="preview">
-        Preview: {firstName} {lastName} — {track} ({score})
-      </p>
 
       <div>
         <label>Email</label>
@@ -121,14 +112,18 @@ const EnrollForm = ({ tracks, onEnroll }) => {
         {errors.email && <p className="error">{errors.email}</p>}
       </div>
 
-      <div>
+      <div className="checkbox-row">
         <label>
           <input type="checkbox" ref={activeRef} defaultChecked={false} />
           Active Student
         </label>
       </div>
 
-      <Button title="Enroll Student" className="submit-btn" disabled={hasErrors} />
+      <p className="preview">
+        Preview: {firstName} {lastName} — {track} ({score})
+      </p>
+
+      <Button title="Enroll Student" className="submit-btn btn" disabled={hasErrors} />
     </form>
   );
 };

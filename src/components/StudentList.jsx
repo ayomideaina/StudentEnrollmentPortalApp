@@ -1,6 +1,6 @@
 import StudentCard from "./StudentCard";
 
-const StudentList = ({ students, title = "All Students", children }) => {
+const StudentList = ({ students, title = "All Students" }) => {
   return (
     <section className="student-list">
       <h2>{title}</h2>
@@ -8,14 +8,16 @@ const StudentList = ({ students, title = "All Students", children }) => {
       {students.length === 0 ? (
         <p>No students to display yet</p>
       ) : (
-        <div className="cards-grid">
-          {students.map((student) => (
-            <StudentCard key={student.id} student={student} />
-          ))}
-        </div>
-      )}
+        <>
+          <div className="cards-grid">
+            {students.map((student) => (
+              <StudentCard key={student.id} student={student} />
+            ))}
+          </div>
 
-      {children && <footer>{children}</footer>}
+          <footer>End of roster — {students.length} total</footer>
+        </>
+      )}
     </section>
   );
 };
