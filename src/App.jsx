@@ -83,7 +83,7 @@ const App = () => {
   };
 
   const visibleStudents = students.slice(0, 8);
-  const studentCount = visibleStudents.length;
+  const studentCount = students.length;
   const averageScore = getAverage(visibleStudents);
 
   return (
@@ -109,7 +109,10 @@ const App = () => {
               />
             </div>
 
-            <StudentList students={visibleStudents} title="Student Roster" />
+            <StudentList students=
+              {visibleStudents} title="Student Roster" 
+              totalCount={students.length} 
+            />
           </>
         )}
       </section>

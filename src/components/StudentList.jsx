@@ -1,6 +1,6 @@
 import StudentCard from "./StudentCard";
 
-const StudentList = ({ students, title = "All Students" }) => {
+const StudentList = ({ students, title = "All Students", totalCount }) => {
   return (
     <section className="student-list">
       <h2>{title}</h2>
@@ -15,7 +15,9 @@ const StudentList = ({ students, title = "All Students" }) => {
             ))}
           </div>
 
-          <footer>End of roster — {students.length} total</footer>
+          <footer>End of roster — {typeof totalCount === "number" ? totalCount : students.length}
+            total
+          </footer>
         </>
       )}
     </section>
