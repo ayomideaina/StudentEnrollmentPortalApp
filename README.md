@@ -157,17 +157,7 @@ The application loads students from:
 
 https://randomuser.me/api/?results=6&nat=us,gb
 
-Mapped fields:
-
-| API Field         | Application Field |
-| ----------------- | ----------------- |
-| login.uuid        | id                |
-| name.first        | firstName         |
-| name.last         | lastName          |
-| email             | email             |
-| picture.thumbnail | avatar            |
-
-Additional fields are generated:
+fields generated:
 
 * track
 * score
@@ -191,21 +181,6 @@ Additional fields are generated:
 
 ---
 
-## Key JavaScript Features Used
-
-* Arrow Functions
-* Template Literals
-* Destructuring
-* Array.map()
-* Array.filter()
-* Array.reduce()
-* Conditional Rendering
-* Async/Await
-* Spread Operator
-* Optional Component Composition
-
----
-
 ## Running the Project
 
 Install dependencies:
@@ -219,14 +194,6 @@ Start development server:
 ```bash
 npm run dev
 ```
-
-or
-
-```bash
-npm start
-```
-
-depending on the project setup.
 
 ---
 
