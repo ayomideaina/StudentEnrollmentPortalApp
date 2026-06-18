@@ -1,10 +1,13 @@
 import { useState, useEffect } from "react";
 
-import Header from "./components/Header";
-import EnrollForm from "./components/EnrollForm";
-import StudentList from "./components/StudentList";
-import StatusMessage from "./components/StatusMessage";
-import ClassButton from "./components/ClassButton";
+import { Routes, Route } from "react-router-dom";
+
+import Navbar from "./components/Navbar";
+import HomePage from "./pages/HomePage";
+import StudentDetailPage from "./pages/StudentDetailPage";
+import EnrollPage from "./pages/EnrollPage";
+import NotFoundPage from "./pages/NotFoundPage";
+
 import "./App.css";
 
 const API_URL = "https://jsonplaceholder.typicode.com/users";
@@ -88,34 +91,34 @@ const App = () => {
 
   return (
     <div className="app">
-      <Header
-        title="KodeCamp 6.0 — Enrollment Portal"
-        studentCount={studentCount}
-        averageScore={averageScore}
-      />
+      <Navbar />
 
-      <EnrollForm tracks={TRACKS} onEnroll={handleEnroll} />
-
-      <section className="roster-section">
-        {status === "loading" || status === "error" ? (
-          <StatusMessage type={status} />
-        ) : (
-          <>
-            <div className="roster-controls">
-              <ClassButton
-                title="↻ Refresh Roster"
-                className="refresh-btn btn"
-                onClick={handleRefresh}
-              />
-            </div>
-
-            <StudentList students=
-              {visibleStudents} title="Student Roster" 
-              totalCount={students.length} 
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <HomePage
+              students={students}
+              status={status}
+              studentCount={studentCount}
+              averageScore={averageScore}
+              onRefresh={handleRefresh}
             />
-          </>
-        )}
-      </section>
+          }
+        />
+
+        <Route
+          path="/students/:id"
+          element={<StudentDetailPage students={students} />}
+        />
+
+        <Route
+          path="/enroll"
+          element={<EnrollPage tracks={TRACKS} onEnroll={handleEnroll} />}
+        />
+
+        <Route path="*" element={<NotFoundPage />} />
+      </Routes>
     </div>
   );
 };

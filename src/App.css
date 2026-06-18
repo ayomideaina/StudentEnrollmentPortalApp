@@ -20,6 +20,40 @@ body {
   padding: 24px 20px 60px;
 }
 
+.navbar {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.nav-link {
+  color: #1a1a2e;
+  font-weight: 600;
+  transition: color 0.2s ease;
+   text-decoration: none;
+}
+
+.nav-link:hover, .student-card a:hover,
+.student-detail-page a:hover,
+.not-found-page a:hover  {
+  color: #4a90d9;
+  text-decoration: underline;
+}
+
+.nav-link-active {
+  color: #4a90d9;
+}
+
+.student-card a,
+.student-detail-page a,
+.not-found-page a {
+  color: #4a90d9;
+  font-weight: 600;
+  transition: color 0.2s ease;
+  text-decoration: none;
+}
+
 .header {
   padding: 28px 0 20px;
 }
