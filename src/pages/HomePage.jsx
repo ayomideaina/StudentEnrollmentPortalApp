@@ -18,7 +18,7 @@ const HomePage = ({ students, status, studentCount, averageScore, onRefresh }) =
         <StudentList students={students} title="All Students">
           <ClassButton
             title="↻ Refresh Roster"
-            className="refresh-btn"
+            className="btn refresh-btn"
             onClick={onRefresh}
           />
         </StudentList>

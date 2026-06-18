@@ -1,9 +1,10 @@
 import StudentCard from "./StudentCard";
 
-const StudentList = ({ students, title = "All Students", totalCount }) => {
+const StudentList = ({ students, title = "All Students", totalCount, children }) => {
   return (
     <section className="student-list">
       <h2>{title}</h2>
+      {children && <div className="refresh-row">{children}</div>}
 
       {students.length === 0 ? (
         <p>No students to display yet</p>
