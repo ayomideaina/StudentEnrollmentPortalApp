@@ -4,7 +4,7 @@
 
 This project is a React application that manages a student enrollment roster. It demonstrates core React concepts, modern JavaScript (ES6+), API integration, controlled and uncontrolled forms, component composition, state management, and conditional rendering.
 
-The application loads an initial roster from the Random User API, allows users to enroll new students through a form, and displays all enrolled students in a responsive card layout. Routing was then added to navigate between Home, Enroll, Student View Details, and an Error 404 page.
+The application loads an initial roster from the Random User API, allows users to enroll new students through a form, and displays all enrolled students in a responsive card layout. Routing was then added to navigate between Home, Enroll, Student View Details, and notfound page.
 
 ---
 
@@ -15,7 +15,7 @@ The application loads an initial roster from the Random User API, allows users t
 | `/` | `HomePage` | The roster — header stats, student cards, refresh button |
 | `/students/:id` | `StudentDetailPage` | Full details for one student, found via the `id` in the URL |
 | `/enroll` | `EnrollPage` | The enrollment form, on its own page |
-| any other URL | `NotFoundPage` | Friendly 404 message with a link back home |
+| any other URL | `NotFoundPage` | 404 message with a link back home |
 
 ---
 
@@ -24,8 +24,7 @@ The application loads an initial roster from the Random User API, allows users t
 ### Navbar
 
 * Shows on every page, with links to Home and Enroll.
-* Built with `<NavLink>` so the active page's link is styled differently.
-* Uses `<Link>` / `<NavLink>` only — never a plain `<a href>` — so navigation never reloads the browser.
+* Built with `<NavLink>`
 
 ### Home Page
 
@@ -40,7 +39,7 @@ The application loads an initial roster from the Random User API, allows users t
 * Reads the student's `id` from the URL using `useParams()`.
 * Finds and displays that student's full details.
 * Shows "Student not found" with a link home if no student matches.
-* Includes a "Back to Roster" link.
+* Includes a "Back to home" link.
 
 ### Enroll Page
 
@@ -50,7 +49,7 @@ The application loads an initial roster from the Random User API, allows users t
 ### 404 Page
 
 * Renders for any URL that doesn't match a defined route.
-* Shows a friendly message with a link back to the homepage.
+* Shows a message with a link back to the homepage.
 
 ### Student Roster
 
@@ -75,7 +74,7 @@ The form intentionally demonstrates both React form patterns:
 * Track
 * Score
 
-These fields update React state on every change and power a live preview section.
+These fields update React state on every change.
 
 #### Uncontrolled Inputs
 Managed using refs (`useRef`):
@@ -156,21 +155,19 @@ src/
 ## How Routing Works Here
 
 * **`<BrowserRouter>`** wraps the entire app in `main.jsx`, which is what allows React Router to read and control the browser's URL.
-* **`<Routes>` / `<Route>`** live in `App.jsx` and decide which page component to render based on the current URL. This replaced the old approach where `App.jsx` rendered every section directly.
+* **`<Routes>` / `<Route>`** live in `App.jsx` and decide which page component to render based on the current URL.
 * **`:id` route parameters** let one route (`/students/:id`) handle an unlimited number of students — the actual id is read inside the page using `useParams()`.
-* **`useNavigate()`** is used in `EnrollPage` to redirect programmatically after a successful form submission, rather than waiting for the user to click a link.
+* **`useNavigate()`** is used in `EnrollPage` to redirect after a successful form submission.
 
 ---
 
 ## State Management Across Pages
 
-The full `students` array, along with loading/error status and the enroll handler, all live in `App.jsx` — the common parent of every page. Each page receives only what it needs as props:
+The full `students` array, along with loading/error status and the enroll handler, all in `App.jsx`. Each page receives only what it needs as props:
 
 * `HomePage` receives the roster, status, stats, and a refresh handler.
 * `StudentDetailPage` receives the roster, then finds its one student by id.
 * `EnrollPage` receives the track list and the function to add a new student.
-
-Because all pages read from and write to this single shared source, enrolling a student on `/enroll` is immediately reflected back on `/` — no extra syncing logic required.
 
 ---
 
